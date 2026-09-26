@@ -1,10 +1,12 @@
 
 package com.hemebiotech.analytics.service;
 
+import com.hemebiotech.analytics.service.counter.ISymptomCount;
+import com.hemebiotech.analytics.service.reader.ISymptomReader;
 import com.hemebiotech.analytics.service.reader.ReadSymptomDataFromFile;
 import com.hemebiotech.analytics.service.counter.SymptomCounter;
 import com.hemebiotech.analytics.service.writer.ISymptomsWriter;
-import com.hemebiotech.analytics.service.writer.SymptomsWriter;
+import com.hemebiotech.analytics.service.writer.SymptomsFileWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,13 +20,14 @@ public class SymptomAnalytics {
     public void run() {
 
         try {
-            ReadSymptomDataFromFile reader =
+            ISymptomReader reader =
                     new ReadSymptomDataFromFile("symptoms.txt");
 
-            SymptomCounter counter = new SymptomCounter();
+            ISymptomCount counter =
+                    new SymptomCounter();
 
             ISymptomsWriter writer =
-                    new SymptomsWriter("result.out");
+                    new SymptomsFileWriter("result.out");
 
             List<String> symptoms = reader.getSymptoms();
 
