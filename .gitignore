@@ -9,7 +9,7 @@ build/
 target/
 
 # Fichiers générés par l'application
-result.out
+
 
 # Fichiers système
 .DS_Store
